@@ -5,5 +5,3 @@ package.json
 package-lock.json
 temporary screenshots/
 .superpowers/
-*.png
-*.jpeg

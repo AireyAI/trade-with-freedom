@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trade With Freedom</title>
     <meta name="description" content="Trade With Freedom — Daily trading insights from a professional trader with an 85% success rate.">
+    <meta property="og:image" content="https://aireyai.github.io/trade-with-freedom/images/og-preview.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -27,7 +28,7 @@
             content: '';
             position: fixed;
             inset: 0;
-            z-index: 10;
+            z-index: 100;
             pointer-events: none;
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
@@ -35,21 +36,142 @@
             background-size: 128px 128px;
         }
 
-        /* Video container */
-        .video-wrapper {
+        /* Background orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 400px; height: 400px;
+            top: -100px; left: -100px;
+            background: radial-gradient(circle, rgba(201,168,76,0.12), transparent 70%);
+            animation: orbFloat 8s ease-in-out infinite alternate;
+        }
+        .orb-2 {
+            width: 300px; height: 300px;
+            bottom: -80px; right: -80px;
+            background: radial-gradient(circle, rgba(52,211,153,0.06), transparent 70%);
+            animation: orbFloat 10s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes orbFloat {
+            from { transform: translate(0, 0); }
+            to { transform: translate(30px, -20px); }
+        }
+
+        /* Gold dust particles */
+        .particles {
             position: fixed;
             inset: 0;
-            z-index: 1;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #C9A84C;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFade 3s ease-in-out infinite;
+        }
+
+        @keyframes particleFade {
+            0% { opacity: 0; transform: translateY(0) scale(0.5); }
+            50% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-80px) scale(0); }
+        }
+
+        /* Intro container */
+        .intro {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 0;
+        }
+
+        /* TWF Logo */
+        .logo-stage {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0A0E1A;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: logoIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        .logo-stage img {
+            height: clamp(80px, 18vw, 160px);
+            filter: brightness(0) invert(1);
         }
 
-        .video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        @keyframes logoIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Gold line that sweeps under the logo */
+        .gold-line {
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #C9A84C, #E4CB78, #C9A84C, transparent);
+            border-radius: 2px;
+            margin-top: 20px;
+            animation: lineExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+        }
+        @keyframes lineExpand {
+            to { width: clamp(200px, 50vw, 400px); }
+        }
+
+        /* "Trade With Freedom" text */
+        .full-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(20px, 4vw, 36px);
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 24px;
+            overflow: hidden;
+        }
+        .full-name span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        /* Each word animates in sequence */
+        .full-name .w1 { animation: wordIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 2.4s forwards; }
+        .full-name .w2 { animation: wordIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards; }
+        .full-name .w3 { animation: wordIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards; }
+
+        @keyframes wordIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Gold glow on the words */
+        .gold-text {
+            background: linear-gradient(135deg, #C9A84C 0%, #E4CB78 50%, #C9A84C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: clamp(12px, 2vw, 16px);
+            color: #9FA1A8;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 3.4s forwards;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Skip button */
@@ -57,7 +179,7 @@
             position: fixed;
             bottom: 40px;
             right: 40px;
-            z-index: 20;
+            z-index: 50;
             padding: 12px 28px;
             background: rgba(201, 168, 76, 0.1);
             border: 1px solid rgba(201, 168, 76, 0.3);
@@ -70,7 +192,7 @@
             text-decoration: none;
             transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
             opacity: 0;
-            animation: fadeInSkip 1s ease 2s forwards;
+            animation: fadeUp 0.8s ease 1.5s forwards;
         }
         .skip-btn:hover {
             background: rgba(201, 168, 76, 0.2);
@@ -82,108 +204,82 @@
             outline-offset: 4px;
         }
 
-        @keyframes fadeInSkip {
-            to { opacity: 1; }
+        /* Fade out everything */
+        .fade-out * {
+            animation-play-state: paused !important;
         }
-
-        /* Fade out transition */
         .fade-out {
-            animation: fadeToBlack 0.8s ease forwards;
+            animation: fadeToBlack 1s ease forwards;
         }
         @keyframes fadeToBlack {
             to { opacity: 0; }
         }
 
-        /* Fallback if video fails */
-        .fallback {
-            position: fixed;
-            inset: 0;
-            z-index: 2;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            background: #0A0E1A;
-        }
-        .fallback.active {
-            display: flex;
-        }
-        .fallback h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(48px, 10vw, 120px);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #C9A84C 0%, #E4CB78 50%, #C9A84C 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0;
-            animation: letterReveal 1.5s ease 0.3s forwards;
-        }
-        .fallback p {
-            font-size: 18px;
-            color: #9FA1A8;
-            opacity: 0;
-            animation: letterReveal 1s ease 1.5s forwards;
-        }
-        @keyframes letterReveal {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Mobile adjustments */
+        @media (max-width: 767px) {
+            .skip-btn {
+                bottom: 24px;
+                right: 24px;
+                padding: 10px 22px;
+                font-size: 13px;
+            }
+            .gold-line { margin-top: 16px; }
+            .full-name { margin-top: 18px; letter-spacing: 0.1em; }
+            .tagline { margin-top: 12px; }
         }
     </style>
 </head>
 <body>
-    <!-- Video intro -->
-    <div class="video-wrapper" id="videoWrapper">
-        <video id="introVideo" autoplay muted playsinline>
-            <source src="twf-intro.mp4" type="video/mp4">
-        </video>
-    </div>
+    <!-- Background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-    <!-- Fallback if video can't load -->
-    <div class="fallback" id="fallback">
-        <h1>TWF</h1>
-        <p>Trade With Freedom</p>
+    <!-- Gold dust particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Intro animation -->
+    <div class="intro">
+        <div class="logo-stage">
+            <img src="images/hero.png" alt="TWF">
+        </div>
+        <div class="gold-line"></div>
+        <div class="full-name gold-text">
+            <span class="w1">Trade</span>&nbsp;
+            <span class="w2">With</span>&nbsp;
+            <span class="w3">Freedom</span>
+        </div>
+        <p class="tagline">Daily Trading Insights</p>
     </div>
 
     <!-- Skip button -->
     <a href="home.html" class="skip-btn" id="skipBtn" aria-label="Skip intro and enter site">Skip Intro &rarr;</a>
 
     <script>
-        const video = document.getElementById('introVideo');
-        const wrapper = document.getElementById('videoWrapper');
-        const fallback = document.getElementById('fallback');
-        const skipBtn = document.getElementById('skipBtn');
+        // Generate gold dust particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = (40 + Math.random() * 40) + '%';
+            p.style.animationDelay = (Math.random() * 4 + 1) + 's';
+            p.style.animationDuration = (2 + Math.random() * 3) + 's';
+            p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+            particlesContainer.appendChild(p);
+        }
 
         function goToSite() {
             document.body.classList.add('fade-out');
             setTimeout(() => {
                 window.location.href = 'home.html';
-            }, 800);
+            }, 1000);
         }
 
-        // When video ends, transition to main site
-        video.addEventListener('ended', () => {
-            goToSite();
-        });
-
-        // If video fails to load, show fallback then redirect
-        video.addEventListener('error', () => {
-            wrapper.style.display = 'none';
-            fallback.classList.add('active');
-            setTimeout(goToSite, 3500);
-        });
-
-        // Safety timeout — if video takes too long, redirect anyway
-        setTimeout(() => {
-            if (!video.ended) {
-                goToSite();
-            }
-        }, 12000);
+        // Auto-redirect after animation completes (~5.5s)
+        setTimeout(goToSite, 5500);
 
         // Skip button
-        skipBtn.addEventListener('click', (e) => {
+        document.getElementById('skipBtn').addEventListener('click', (e) => {
             e.preventDefault();
             goToSite();
         });

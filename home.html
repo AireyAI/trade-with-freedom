@@ -241,7 +241,16 @@
             .section-pad { padding: 64px 16px; }
 
             /* Hero heading — sized so words pair nicely on mobile */
-            h1 { font-size: 2.15rem !important; line-height: 1.1 !important; }
+            h1 {
+                font-size: 2.15rem !important;
+                line-height: 1.1 !important;
+                text-align: left !important;
+            }
+            h1 span {
+                text-align: left !important;
+            }
+            /* Let hero content use full width on mobile */
+            .hero-content { max-width: 100% !important; }
 
             /* Better mobile CTA sizing — bigger touch targets */
             .cta-button {
@@ -366,7 +375,7 @@
         <div class="orb w-64 h-64 top-1/2 left-1/2 -translate-x-1/2" style="background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);" data-parallax="-30"></div>
 
         <div class="max-w-7xl mx-auto px-6 w-full">
-            <div class="max-w-3xl">
+            <div class="max-w-3xl hero-content">
                 <!-- Badge -->
                 <div class="stat-badge mb-8" data-appear data-appear-delay="0">
                     <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>

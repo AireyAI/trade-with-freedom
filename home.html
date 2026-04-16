@@ -234,6 +234,82 @@
             outline: 2px solid #E4CB78;
             outline-offset: 4px;
         }
+
+        /* ═══════ MOBILE IMPROVEMENTS ═══════ */
+        @media (max-width: 767px) {
+            /* Tighter section padding on mobile */
+            .section-pad { padding: 64px 16px; }
+
+            /* Bigger hero heading with tighter line height */
+            h1 { font-size: 2.5rem !important; line-height: 1.08 !important; }
+
+            /* Better mobile CTA sizing — bigger touch targets */
+            .cta-button {
+                padding: 16px 32px;
+                font-size: 15px;
+                width: 100%;
+                justify-content: center;
+                min-height: 52px;
+            }
+            .cta-secondary {
+                padding: 16px 32px;
+                font-size: 15px;
+                width: 100%;
+                justify-content: center;
+                min-height: 52px;
+            }
+
+            /* Stack hero CTAs full width */
+            .hero-ctas { flex-direction: column; }
+
+            /* Bigger stats on mobile */
+            .stat-counter { font-size: 2rem !important; }
+
+            /* Testimonial photos bigger */
+            .testimonial-photo { width: 56px !important; height: 56px !important; }
+
+            /* Mobile menu improvements */
+            .mobile-menu {
+                background: rgba(10, 14, 26, 0.98);
+                border-top: 1px solid rgba(201, 168, 76, 0.1);
+                padding: 16px 24px 24px;
+            }
+            .mobile-menu a {
+                font-size: 16px !important;
+                padding: 14px 0 !important;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .mobile-menu .cta-button {
+                margin-top: 8px;
+                border-bottom: none !important;
+            }
+
+            /* Glass cards less padding on mobile */
+            .glass-card { border-radius: 12px; }
+
+            /* Footer improvements */
+            footer .footer-links {
+                gap: 16px !important;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            footer .footer-links a {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+
+            /* Social proof strip compact */
+            .social-proof-strip { gap: 12px !important; }
+
+            /* Quote mark smaller on mobile */
+            .quote-mark { font-size: 48px; top: -4px; left: 12px; }
+        }
+
+        /* Small phones */
+        @media (max-width: 374px) {
+            h1 { font-size: 2rem !important; }
+            .section-pad { padding: 48px 14px; }
+        }
     </style>
 </head>
 <body>
@@ -308,7 +384,7 @@
                 </p>
 
                 <!-- CTAs -->
-                <div class="flex flex-wrap gap-4 mb-16" data-appear data-appear-delay="0.6">
+                <div class="flex flex-wrap gap-4 mb-16 hero-ctas" data-appear data-appear-delay="0.6">
                     <a href="#join" class="cta-button" data-magnetic>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.41 14.59L6 12l1.41-1.41L11 14.17l6.59-6.59L19 9l-8.41 8.59z"/></svg>
                         Join The Free Group
@@ -319,7 +395,7 @@
                 </div>
 
                 <!-- Social proof strip -->
-                <div class="flex items-center gap-6" data-appear data-appear-delay="0.8">
+                <div class="flex items-center gap-6 social-proof-strip" data-appear data-appear-delay="0.8">
                     <div class="flex -space-x-3">
                         <div class="w-10 h-10 rounded-full bg-brand-surface-light border-2 border-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold">K</div>
                         <div class="w-10 h-10 rounded-full bg-brand-surface-light border-2 border-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold">P</div>
@@ -520,7 +596,7 @@
                     <span class="quote-mark">&ldquo;</span>
                     <div class="relative pt-6">
                         <div class="flex items-center gap-4 mb-6">
-                            <img src="images/kirsten.jpg" alt="Kirsten" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                            <img src="images/kirsten.jpg" alt="Kirsten" class="w-12 h-12 rounded-full object-cover testimonial-photo" loading="lazy">
                             <div>
                                 <p class="font-semibold text-brand-text">Kirsten</p>
                                 <p class="text-xs text-brand-muted">Active Member</p>
@@ -542,7 +618,7 @@
                     <span class="quote-mark">&ldquo;</span>
                     <div class="relative pt-6">
                         <div class="flex items-center gap-4 mb-6">
-                            <img src="images/paul-lisa.jpg" alt="Paul and Lisa" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                            <img src="images/paul-lisa.jpg" alt="Paul and Lisa" class="w-12 h-12 rounded-full object-cover testimonial-photo" loading="lazy">
                             <div>
                                 <p class="font-semibold text-brand-text">Paul & Lisa</p>
                                 <p class="text-xs text-brand-muted">Business Owners</p>
@@ -564,7 +640,7 @@
                     <span class="quote-mark">&ldquo;</span>
                     <div class="relative pt-6">
                         <div class="flex items-center gap-4 mb-6">
-                            <img src="images/taylor.jpg" alt="Taylor" class="w-12 h-12 rounded-full object-cover" loading="lazy">
+                            <img src="images/taylor.jpg" alt="Taylor" class="w-12 h-12 rounded-full object-cover testimonial-photo" loading="lazy">
                             <div>
                                 <p class="font-semibold text-brand-text">Taylor</p>
                                 <p class="text-xs text-brand-muted">Full-Time Trader</p>
@@ -772,7 +848,7 @@
             <p class="text-brand-muted text-xs">&copy; 2026 Trade With Freedom. All rights reserved.</p>
 
             <!-- Nav links -->
-            <div class="flex gap-6">
+            <div class="flex gap-6 footer-links">
                 <a href="#how-it-works" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">How It Works</a>
                 <a href="#results" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">Results</a>
                 <a href="#about" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">About</a>

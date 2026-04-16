@@ -460,6 +460,43 @@
     </section>
 
 
+    <!-- ═══════════════════ VIDEO SECTION ═══════════════════ -->
+    <section class="section-pad relative overflow-hidden">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-12" data-reveal="fade-up">
+                <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">Watch Brad</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Hear It <span class="gold-glow">Straight From Brad</span></h2>
+                <p class="text-brand-muted text-lg">No scripts. No hype. Just Brad explaining exactly how Trade With Freedom works.</p>
+            </div>
+
+            <!-- Video player -->
+            <div class="relative glass-card overflow-hidden" style="border-radius: 20px;" data-reveal="zoom">
+                <div class="relative w-full" style="padding-top: 56.25%;">
+                    <video
+                        id="bradVideo"
+                        class="absolute inset-0 w-full h-full object-cover"
+                        preload="metadata"
+                        playsinline
+                        controls
+                        controlsList="nodownload"
+                        poster="images/brad-secondary.png"
+                        style="border-radius: 20px;"
+                    >
+                        <source src="https://storage.googleapis.com/msgsndr/tNHdfLRdAlR5TfwLFYW9/media/695e9b1c35d75483bfcedaaf.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Custom play overlay -->
+                    <div id="playOverlay" class="absolute inset-0 flex items-center justify-center cursor-pointer z-10" style="background: rgba(10,14,26,0.3); border-radius: 20px;" onclick="document.getElementById('bradVideo').play(); this.style.display='none';">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110" style="background: linear-gradient(135deg, #C9A84C, #A88B3A); box-shadow: 0 8px 40px rgba(201,168,76,0.4);">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 ml-1" viewBox="0 0 24 24" fill="#0A0E1A"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
     <section id="results" class="section-pad relative overflow-hidden">
         <div class="orb w-72 h-72 top-0 right-20" style="background: radial-gradient(circle, rgba(52,211,153,0.06), transparent 70%);" data-parallax="30"></div>
@@ -742,6 +779,15 @@
 
 
     <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script>
+        // Video play overlay handler
+        const bradVideo = document.getElementById('bradVideo');
+        const playOverlay = document.getElementById('playOverlay');
+        if (bradVideo && playOverlay) {
+            bradVideo.addEventListener('play', () => { playOverlay.style.display = 'none'; });
+            bradVideo.addEventListener('pause', () => { if (bradVideo.currentTime > 0) playOverlay.style.display = 'none'; });
+        }
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="animations.js" defer></script>

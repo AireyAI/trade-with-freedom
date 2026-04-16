@@ -240,17 +240,20 @@
             /* Tighter section padding on mobile */
             .section-pad { padding: 64px 16px; }
 
-            /* Hero heading — sized so words pair nicely on mobile */
+            /* Hero — center everything on mobile */
             h1 {
                 font-size: 2.15rem !important;
                 line-height: 1.1 !important;
-                text-align: left !important;
+                text-align: center !important;
             }
-            h1 span {
-                text-align: left !important;
+            .hero-content {
+                max-width: 100% !important;
+                text-align: center !important;
             }
-            /* Let hero content use full width on mobile */
-            .hero-content { max-width: 100% !important; }
+            .hero-content .stat-badge { margin-left: auto; margin-right: auto; }
+            .hero-content p { text-align: center !important; }
+            .hero-ctas { justify-content: center !important; }
+            .social-proof-strip { justify-content: center !important; }
 
             /* Better mobile CTA sizing — bigger touch targets */
             .cta-button {

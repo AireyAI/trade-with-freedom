@@ -129,6 +129,38 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Tap to play overlay (mobile fallback) */
+        .tap-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0A0E1A;
+            cursor: pointer;
+        }
+        .tap-content {
+            text-align: center;
+        }
+        .tap-play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #C9A84C, #A88B3A);
+            box-shadow: 0 8px 40px rgba(201,168,76,0.4);
+            animation: tapPulse 2s ease-in-out infinite;
+        }
+        .tap-play-btn svg { margin-left: 4px; }
+        @keyframes tapPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 40px rgba(201,168,76,0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 50px rgba(201,168,76,0.6); }
+        }
+
         @media (max-width: 767px) {
             .skip-btn {
                 bottom: 24px;
@@ -142,12 +174,21 @@
 <body>
     <!-- Video intro -->
     <div class="video-wrapper" id="videoWrapper">
-        <video id="introVideo" autoplay muted playsinline>
+        <video id="introVideo" autoplay muted playsinline preload="auto" webkit-playsinline>
             <source src="twf-intro.mp4" type="video/mp4">
         </video>
+        <!-- Tap to play overlay for mobile -->
+        <div id="tapOverlay" class="tap-overlay" style="display:none;">
+            <div class="tap-content">
+                <div class="tap-play-btn">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="#0A0E1A"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+                <p style="color:#C9A84C; font-size:14px; font-weight:600; margin-top:16px; letter-spacing:0.1em; text-transform:uppercase;">Tap to Play</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Fallback if video can't load -->
+    <!-- Fallback if video fails -->
     <div class="fallback" id="fallback">
         <img src="images/hero.png" alt="TWF">
         <p>Daily Trading Insights</p>
@@ -161,8 +202,12 @@
         const wrapper = document.getElementById('videoWrapper');
         const fallback = document.getElementById('fallback');
         const skipBtn = document.getElementById('skipBtn');
+        const tapOverlay = document.getElementById('tapOverlay');
+        let redirected = false;
 
         function goToSite() {
+            if (redirected) return;
+            redirected = true;
             document.body.classList.add('fade-out');
             setTimeout(() => {
                 window.location.href = 'home.html';
@@ -174,16 +219,35 @@
             goToSite();
         });
 
-        // If video fails to load, show fallback then redirect
+        // Try to autoplay — if it fails (mobile), show tap overlay
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Autoplay worked — hide tap overlay
+                tapOverlay.style.display = 'none';
+            }).catch(() => {
+                // Autoplay blocked — show tap to play
+                tapOverlay.style.display = 'flex';
+            });
+        }
+
+        // Tap overlay click — play the video
+        tapOverlay.addEventListener('click', () => {
+            tapOverlay.style.display = 'none';
+            video.play();
+        });
+
+        // If video fails to load entirely, show fallback then redirect
         video.addEventListener('error', () => {
             wrapper.style.display = 'none';
+            tapOverlay.style.display = 'none';
             fallback.classList.add('active');
             setTimeout(goToSite, 3500);
         });
 
         // Safety timeout — if video takes too long, redirect anyway
         setTimeout(() => {
-            if (!video.ended) {
+            if (!video.ended && !redirected) {
                 goToSite();
             }
         }, 12000);

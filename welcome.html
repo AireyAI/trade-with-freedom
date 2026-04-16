@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade With Freedom</title>
+    <meta name="description" content="Trade With Freedom — Daily trading insights from a professional trader with an 85% success rate.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0A0E1A;
+            color: #E8E6E3;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            height: 100dvh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 128px 128px;
+        }
+
+        /* Video container */
+        .video-wrapper {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0A0E1A;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Skip button */
+        .skip-btn {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 20;
+            padding: 12px 28px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 60px;
+            color: #C9A84C;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            animation: fadeInSkip 1s ease 2s forwards;
+        }
+        .skip-btn:hover {
+            background: rgba(201, 168, 76, 0.2);
+            border-color: #C9A84C;
+            transform: translateY(-2px);
+        }
+        .skip-btn:focus-visible {
+            outline: 2px solid #E4CB78;
+            outline-offset: 4px;
+        }
+
+        @keyframes fadeInSkip {
+            to { opacity: 1; }
+        }
+
+        /* Fade out transition */
+        .fade-out {
+            animation: fadeToBlack 0.8s ease forwards;
+        }
+        @keyframes fadeToBlack {
+            to { opacity: 0; }
+        }
+
+        /* Fallback if video fails */
+        .fallback {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            background: #0A0E1A;
+        }
+        .fallback.active {
+            display: flex;
+        }
+        .fallback h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #C9A84C 0%, #E4CB78 50%, #C9A84C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: letterReveal 1.5s ease 0.3s forwards;
+        }
+        .fallback p {
+            font-size: 18px;
+            color: #9FA1A8;
+            opacity: 0;
+            animation: letterReveal 1s ease 1.5s forwards;
+        }
+        @keyframes letterReveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video intro -->
+    <div class="video-wrapper" id="videoWrapper">
+        <video id="introVideo" autoplay muted playsinline>
+            <source src="twf-intro.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Fallback if video can't load -->
+    <div class="fallback" id="fallback">
+        <h1>TWF</h1>
+        <p>Trade With Freedom</p>
+    </div>
+
+    <!-- Skip button -->
+    <a href="index.html" class="skip-btn" id="skipBtn" aria-label="Skip intro and enter site">Skip Intro &rarr;</a>
+
+    <script>
+        const video = document.getElementById('introVideo');
+        const wrapper = document.getElementById('videoWrapper');
+        const fallback = document.getElementById('fallback');
+        const skipBtn = document.getElementById('skipBtn');
+
+        function goToSite() {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 800);
+        }
+
+        // When video ends, transition to main site
+        video.addEventListener('ended', () => {
+            goToSite();
+        });
+
+        // If video fails to load, show fallback then redirect
+        video.addEventListener('error', () => {
+            wrapper.style.display = 'none';
+            fallback.classList.add('active');
+            setTimeout(goToSite, 3500);
+        });
+
+        // Safety timeout — if video takes too long, redirect anyway
+        setTimeout(() => {
+            if (!video.ended) {
+                goToSite();
+            }
+        }, 12000);
+
+        // Skip button
+        skipBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            goToSite();
+        });
+    </script>
+</body>
+</html>

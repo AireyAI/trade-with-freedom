@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade With Freedom — Daily Trading Insights From A Professional Trader</title>
+    <meta name="description" content="Get 2-4 daily high-probability trade ideas from a professional trader with an audited 85% success rate. No courses. No monthly fees. Just results.">
+    <meta property="og:title" content="Trade With Freedom — Professional Trading Insights">
+    <meta property="og:description" content="Get daily trading insights from a professional trader with an 85% success rate. Join the free Telegram group.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tradewithfreedom.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://tradewithfreedom.com">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#C9A84C',
+                            'gold-light': '#E4CB78',
+                            'gold-dark': '#A88B3A',
+                            emerald: '#34D399',
+                            'emerald-dark': '#059669',
+                            navy: '#0A0E1A',
+                            'navy-light': '#111827',
+                            'navy-mid': '#1A2035',
+                            surface: '#151B2E',
+                            'surface-light': '#1E2642',
+                            text: '#E8E6E3',
+                            muted: '#9FA1A8',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0E1A;
+            color: #E8E6E3;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 128px 128px;
+        }
+
+        /* Gold glow text */
+        .gold-glow {
+            background: linear-gradient(135deg, #C9A84C 0%, #E4CB78 50%, #C9A84C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glass card */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(21, 27, 46, 0.8) 0%, rgba(30, 38, 66, 0.6) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 168, 76, 0.12);
+            border-radius: 16px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px -15px rgba(201, 168, 76, 0.15), 0 0 0 1px rgba(201, 168, 76, 0.2);
+        }
+
+        /* CTA button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: linear-gradient(135deg, #C9A84C 0%, #A88B3A 100%);
+            color: #0A0E1A;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            box-shadow: 0 4px 20px -4px rgba(201, 168, 76, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 40px -8px rgba(201, 168, 76, 0.5);
+        }
+        .cta-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+        .cta-button:focus-visible {
+            outline: 2px solid #E4CB78;
+            outline-offset: 4px;
+        }
+
+        /* Secondary button */
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: transparent;
+            color: #C9A84C;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            border: 2px solid rgba(201, 168, 76, 0.4);
+            border-radius: 60px;
+            text-decoration: none;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            cursor: pointer;
+        }
+        .cta-secondary:hover {
+            border-color: #C9A84C;
+            background: rgba(201, 168, 76, 0.08);
+            transform: translateY(-2px);
+        }
+        .cta-secondary:focus-visible {
+            outline: 2px solid #E4CB78;
+            outline-offset: 4px;
+        }
+
+        /* Stat badge */
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #E4CB78;
+        }
+
+        /* Divider line */
+        .gold-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #C9A84C, #E4CB78);
+            border-radius: 2px;
+        }
+
+        /* Quote marks */
+        .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            line-height: 1;
+            color: rgba(201, 168, 76, 0.2);
+            position: absolute;
+            top: -10px;
+            left: 16px;
+        }
+
+        /* Orb backgrounds */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        /* Section padding */
+        .section-pad {
+            padding: 100px 24px;
+        }
+        @media (min-width: 768px) {
+            .section-pad { padding: 140px 48px; }
+        }
+
+        /* Heading styles */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.03em;
+        }
+        p, li, span, a {
+            line-height: 1.7;
+        }
+
+        /* Nav */
+        .nav-glass {
+            background: rgba(10, 14, 26, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0E1A; }
+        ::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.5); }
+
+        /* Mobile nav toggle */
+        .mobile-menu { display: none; }
+        .mobile-menu.active { display: flex; }
+
+        /* Focus states */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #E4CB78;
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+    <nav class="nav-glass fixed top-0 left-0 w-full z-50" role="navigation" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 text-decoration-none" aria-label="Trade With Freedom home">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #C9A84C, #A88B3A);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.5" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                </div>
+                <span class="font-display text-xl font-bold tracking-tight text-brand-text">Trade<span class="gold-glow">WithFreedom</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#how-it-works" class="text-brand-muted hover:text-brand-gold text-sm font-medium transition-colors duration-300">How It Works</a>
+                <a href="#results" class="text-brand-muted hover:text-brand-gold text-sm font-medium transition-colors duration-300">Results</a>
+                <a href="#about" class="text-brand-muted hover:text-brand-gold text-sm font-medium transition-colors duration-300">About Brad</a>
+                <a href="#method" class="text-brand-muted hover:text-brand-gold text-sm font-medium transition-colors duration-300">The Method</a>
+                <a href="#join" class="cta-button !py-3 !px-6 !text-sm" data-magnetic>Join Free Group</a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="md:hidden flex flex-col gap-1.5 p-2" onclick="document.getElementById('mobileMenu').classList.toggle('active')" aria-label="Toggle menu" aria-expanded="false">
+                <span class="w-6 h-0.5 bg-brand-gold rounded"></span>
+                <span class="w-6 h-0.5 bg-brand-gold rounded"></span>
+                <span class="w-4 h-0.5 bg-brand-gold rounded"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu flex-col gap-4 px-6 pb-6 md:hidden">
+            <a href="#how-it-works" class="text-brand-muted hover:text-brand-gold text-sm font-medium py-2" onclick="document.getElementById('mobileMenu').classList.remove('active')">How It Works</a>
+            <a href="#results" class="text-brand-muted hover:text-brand-gold text-sm font-medium py-2" onclick="document.getElementById('mobileMenu').classList.remove('active')">Results</a>
+            <a href="#about" class="text-brand-muted hover:text-brand-gold text-sm font-medium py-2" onclick="document.getElementById('mobileMenu').classList.remove('active')">About Brad</a>
+            <a href="#method" class="text-brand-muted hover:text-brand-gold text-sm font-medium py-2" onclick="document.getElementById('mobileMenu').classList.remove('active')">The Method</a>
+            <a href="#join" class="cta-button !py-3 !text-sm text-center mt-2" onclick="document.getElementById('mobileMenu').classList.remove('active')">Join Free Group</a>
+        </div>
+    </nav>
+
+
+    <main>
+    <!-- ═══════════════════ HERO SECTION ═══════════════════ -->
+    <section class="relative min-h-screen flex items-center overflow-hidden" style="padding-top: 100px;">
+        <!-- Background orbs -->
+        <div class="orb w-96 h-96 top-20 -left-48" style="background: radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%);" data-parallax="-60"></div>
+        <div class="orb w-80 h-80 bottom-20 right-0" style="background: radial-gradient(circle, rgba(52,211,153,0.08), transparent 70%);" data-parallax="40"></div>
+        <div class="orb w-64 h-64 top-1/2 left-1/2 -translate-x-1/2" style="background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);" data-parallax="-30"></div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full">
+            <div class="max-w-3xl">
+                <!-- Badge -->
+                <div class="stat-badge mb-8" data-appear data-appear-delay="0">
+                    <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+                    Audited 85% Success Rate
+                </div>
+
+                <!-- Heading -->
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6" data-split="words">
+                    Get Daily Trading Insights From A <span class="gold-glow">Professional Trader</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-lg md:text-xl text-brand-muted max-w-xl mb-10 font-light" data-appear data-appear-delay="0.4" style="line-height: 1.7;">
+                    No complex courses. No monthly fees. Just the structure that works — 2-4 high-probability trade ideas delivered daily.
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex flex-wrap gap-4 mb-16" data-appear data-appear-delay="0.6">
+                    <a href="#join" class="cta-button" data-magnetic>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.41 14.59L6 12l1.41-1.41L11 14.17l6.59-6.59L19 9l-8.41 8.59z"/></svg>
+                        Join The Free Group
+                    </a>
+                    <a href="#how-it-works" class="cta-secondary">
+                        See How It Works
+                    </a>
+                </div>
+
+                <!-- Social proof strip -->
+                <div class="flex items-center gap-6" data-appear data-appear-delay="0.8">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-surface-light border-2 border-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold">K</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-surface-light border-2 border-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold">P</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-surface-light border-2 border-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold">T</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-surface-light border-2 border-brand-navy flex items-center justify-center text-xs font-bold text-brand-gold">+</div>
+                    </div>
+                    <div>
+                        <p class="text-sm text-brand-text font-medium">Trusted by thousands of traders</p>
+                        <p class="text-xs text-brand-muted">Members across 40+ countries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative chart line -->
+        <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-gold/20 to-transparent"></div>
+    </section>
+
+
+    <!-- ═══════════════════ STATS BAR ═══════════════════ -->
+    <section class="relative border-y border-white/5" style="background: linear-gradient(180deg, rgba(21,27,46,0.5) 0%, rgba(10,14,26,0.5) 100%);">
+        <div class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" data-stagger-parent>
+                <div data-stagger-child>
+                    <p class="font-display text-3xl md:text-4xl font-bold gold-glow mb-2"><span data-counter="85" data-counter-suffix="%">0</span></p>
+                    <p class="text-sm text-brand-muted font-medium">Audited Success Rate</p>
+                </div>
+                <div data-stagger-child>
+                    <p class="font-display text-3xl md:text-4xl font-bold gold-glow mb-2"><span data-counter="2" data-counter-suffix="-4">0</span></p>
+                    <p class="text-sm text-brand-muted font-medium">Daily Trade Ideas</p>
+                </div>
+                <div data-stagger-child>
+                    <p class="font-display text-3xl md:text-4xl font-bold gold-glow mb-2"><span data-counter="10" data-counter-suffix="+">0</span></p>
+                    <p class="text-sm text-brand-muted font-medium">Years Refined</p>
+                </div>
+                <div data-stagger-child>
+                    <p class="font-display text-3xl md:text-4xl font-bold gold-glow mb-2"><span data-counter="0" data-counter-prefix="$">0</span></p>
+                    <p class="text-sm text-brand-muted font-medium">Cost To Join</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ VALUE PROPS ═══════════════════ -->
+    <section id="how-it-works" class="section-pad relative overflow-hidden">
+        <div class="orb w-96 h-96 -top-48 right-0" style="background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);" data-parallax="50"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center max-w-2xl mx-auto mb-20" data-reveal="fade-up">
+                <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">How It Works</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Everything You Need,<br><span class="gold-glow">Nothing You Don't</span></h2>
+                <p class="text-brand-muted text-lg">A proven system that delivers results without the complexity. Here's what makes Trade With Freedom different.</p>
+            </div>
+
+            <!-- Three cards -->
+            <div class="grid md:grid-cols-3 gap-6" data-stagger-parent>
+                <!-- Card 1 -->
+                <div class="glass-card p-8" data-stagger-child data-tilt>
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3 text-brand-text">Trade On Your Time</h3>
+                    <p class="text-brand-muted text-sm leading-relaxed">Receive 2-4 specific, high-probability trade ideas designed to be placed when you have time. No sitting at screens all day — trade around your life.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8" data-stagger-child data-tilt>
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(52,211,153,0.15), rgba(52,211,153,0.05));">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3 text-brand-text">Sourced By A Professional</h3>
+                    <p class="text-brand-muted text-sm leading-relaxed">Every trade idea comes from a professional trader with an audited 85% success rate maintained over thousands of trades. Human analysis, not bots.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8" data-stagger-child data-tilt>
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style="background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold mb-3 text-brand-text">100% Free Access</h3>
+                    <p class="text-brand-muted text-sm leading-relaxed">No hidden fees. No upsells. Completely free — sponsored by a regulated partner trading platform. You get the insights, you keep the profits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ PROBLEM / SOLUTION ═══════════════════ -->
+    <section class="section-pad relative overflow-hidden" style="background: linear-gradient(180deg, #0A0E1A 0%, #111827 50%, #0A0E1A 100%);">
+        <div class="orb w-80 h-80 top-1/4 -left-40" style="background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%);" data-parallax="-40"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left: Problem -->
+                <div data-reveal="fade-right">
+                    <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">The Problem</p>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight">Tired of courses that<br>don't deliver <span class="gold-glow">results?</span></h2>
+                    <div class="space-y-4 text-brand-muted">
+                        <p>You've tried the courses. You've watched the YouTube gurus. You've paid the monthly subscriptions. And yet — you're still where you started.</p>
+                        <p>The problem isn't you. It's the noise. Too many strategies, too many conflicting opinions, too much theory — and not enough actionable structure.</p>
+                        <p class="text-brand-text font-medium italic">"Is this really all there is?"</p>
+                    </div>
+                </div>
+
+                <!-- Right: Solution -->
+                <div data-reveal="fade-left">
+                    <div class="glass-card p-8 md:p-10">
+                        <p class="text-brand-emerald font-medium text-sm tracking-widest uppercase mb-4">The Solution</p>
+                        <h3 class="font-display text-2xl md:text-3xl font-bold mb-6 text-brand-text">You don't need another theory — you need an <span class="gold-glow">actionable method.</span></h3>
+                        <div class="space-y-4 text-brand-muted text-sm">
+                            <p>Cut through the noise. Ignore the hype. Embrace a proven rhythm that thousands of traders already trust.</p>
+                            <div class="space-y-3 pt-2">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-brand-gold mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                    <span>Clear entries, exits, and targets — no guesswork</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-brand-gold mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                    <span>2-4 trades a day — not 50</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-brand-gold mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                    <span>Refined over a decade of real markets</span>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-brand-gold mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                    <span>Sent straight to your phone via Telegram</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+    <section id="results" class="section-pad relative overflow-hidden">
+        <div class="orb w-72 h-72 top-0 right-20" style="background: radial-gradient(circle, rgba(52,211,153,0.06), transparent 70%);" data-parallax="30"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center max-w-2xl mx-auto mb-20" data-reveal="fade-up">
+                <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">Real Results</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Don't Take Our Word For It — <br><span class="gold-glow">Hear From The Members</span></h2>
+                <p class="text-brand-muted text-lg">Real people. Real profits. Real freedom.</p>
+            </div>
+
+            <!-- Testimonial cards -->
+            <div class="grid md:grid-cols-3 gap-6" data-stagger-parent>
+                <!-- Kirsten -->
+                <div class="glass-card p-8 relative" data-stagger-child data-tilt>
+                    <span class="quote-mark">&ldquo;</span>
+                    <div class="relative pt-6">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-brand-navy" style="background: linear-gradient(135deg, #C9A84C, #E4CB78);">K</div>
+                            <div>
+                                <p class="font-semibold text-brand-text">Kirsten</p>
+                                <p class="text-xs text-brand-muted">Active Member</p>
+                            </div>
+                        </div>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-4">I'm now making <span class="text-brand-gold font-semibold">&pound;200-&pound;300 profit per day</span>, and my trades are completed before 9 AM. I have the rest of the day to spend however I want.</p>
+                        <div class="flex gap-1">
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paul & Lisa -->
+                <div class="glass-card p-8 relative" data-stagger-child data-tilt>
+                    <span class="quote-mark">&ldquo;</span>
+                    <div class="relative pt-6">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-brand-navy" style="background: linear-gradient(135deg, #34D399, #059669);">P</div>
+                            <div>
+                                <p class="font-semibold text-brand-text">Paul & Lisa</p>
+                                <p class="text-xs text-brand-muted">Business Owners</p>
+                            </div>
+                        </div>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-4">We run multiple businesses and needed something that didn't demand all our time. This fits perfectly — <span class="text-brand-gold font-semibold">simple trades, consistent returns</span>, and we barely have to look at a screen.</p>
+                        <div class="flex gap-1">
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taylor -->
+                <div class="glass-card p-8 relative" data-stagger-child data-tilt>
+                    <span class="quote-mark">&ldquo;</span>
+                    <div class="relative pt-6">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-brand-navy" style="background: linear-gradient(135deg, #C9A84C, #E4CB78);">T</div>
+                            <div>
+                                <p class="font-semibold text-brand-text">Taylor</p>
+                                <p class="text-xs text-brand-muted">Full-Time Trader</p>
+                            </div>
+                        </div>
+                        <p class="text-brand-muted text-sm leading-relaxed mb-4"><span class="text-brand-gold font-semibold">Transformed my life in 12 months.</span> I went from barely breaking even to travelling the world and trading from wherever I want. This system gave me the structure I was missing.</p>
+                        <div class="flex gap-1">
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA under testimonials -->
+            <div class="text-center mt-16" data-reveal="fade-up">
+                <a href="#join" class="cta-button" data-magnetic>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.41 14.59L6 12l1.41-1.41L11 14.17l6.59-6.59L19 9l-8.41 8.59z"/></svg>
+                    Join Them — It's Free
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ MEET BRAD ═══════════════════ -->
+    <section id="about" class="section-pad relative overflow-hidden" style="background: linear-gradient(180deg, #0A0E1A 0%, #111827 50%, #0A0E1A 100%);">
+        <div class="orb w-96 h-96 top-0 right-0" style="background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);" data-parallax="-50"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Left: Image placeholder -->
+                <div data-reveal="fade-right">
+                    <div class="relative">
+                        <div class="glass-card overflow-hidden aspect-[4/5] relative">
+                            <div class="w-full h-full flex flex-col items-center justify-center p-8" style="background: linear-gradient(135deg, #151B2E 0%, #1A2035 50%, #111827 100%);">
+                                <!-- Decorative trading dashboard mockup -->
+                                <div class="w-full space-y-6">
+                                    <!-- Fake chart header -->
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-3 h-3 rounded-full bg-brand-emerald"></div>
+                                            <span class="text-brand-gold text-xs font-mono font-bold">XAUUSD</span>
+                                        </div>
+                                        <span class="text-brand-emerald text-xs font-mono">+2.34%</span>
+                                    </div>
+                                    <!-- Chart SVG -->
+                                    <svg class="w-full" viewBox="0 0 400 200" fill="none">
+                                        <defs>
+                                            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.3"/>
+                                                <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <!-- Grid lines -->
+                                        <line x1="0" y1="50" x2="400" y2="50" stroke="#C9A84C" opacity="0.06"/>
+                                        <line x1="0" y1="100" x2="400" y2="100" stroke="#C9A84C" opacity="0.06"/>
+                                        <line x1="0" y1="150" x2="400" y2="150" stroke="#C9A84C" opacity="0.06"/>
+                                        <!-- Area fill -->
+                                        <path d="M0,160 Q40,140 80,130 T160,100 T240,70 T320,50 T400,30 L400,200 L0,200 Z" fill="url(#chartGrad)"/>
+                                        <!-- Line -->
+                                        <path d="M0,160 Q40,140 80,130 T160,100 T240,70 T320,50 T400,30" stroke="#C9A84C" stroke-width="2.5" fill="none"/>
+                                        <circle cx="400" cy="30" r="4" fill="#C9A84C"/>
+                                        <circle cx="400" cy="30" r="8" fill="#C9A84C" opacity="0.2"/>
+                                    </svg>
+                                    <!-- Fake stats row -->
+                                    <div class="grid grid-cols-3 gap-3">
+                                        <div class="bg-white/5 rounded-lg p-3 text-center">
+                                            <p class="text-brand-gold text-lg font-bold font-mono">85%</p>
+                                            <p class="text-brand-muted text-[10px]">Win Rate</p>
+                                        </div>
+                                        <div class="bg-white/5 rounded-lg p-3 text-center">
+                                            <p class="text-brand-emerald text-lg font-bold font-mono">2.4</p>
+                                            <p class="text-brand-muted text-[10px]">Avg R:R</p>
+                                        </div>
+                                        <div class="bg-white/5 rounded-lg p-3 text-center">
+                                            <p class="text-brand-gold text-lg font-bold font-mono">3.2</p>
+                                            <p class="text-brand-muted text-[10px]">Trades/Day</p>
+                                        </div>
+                                    </div>
+                                    <!-- Fake trade entries -->
+                                    <div class="space-y-2">
+                                        <div class="flex items-center justify-between bg-white/5 rounded-lg px-4 py-2.5">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-2 h-2 rounded-full bg-brand-emerald"></div>
+                                                <span class="text-brand-text text-xs font-mono">XAUUSD BUY</span>
+                                            </div>
+                                            <span class="text-brand-emerald text-xs font-mono">+$1,240</span>
+                                        </div>
+                                        <div class="flex items-center justify-between bg-white/5 rounded-lg px-4 py-2.5">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-2 h-2 rounded-full bg-brand-emerald"></div>
+                                                <span class="text-brand-text text-xs font-mono">GBPUSD SELL</span>
+                                            </div>
+                                            <span class="text-brand-emerald text-xs font-mono">+$860</span>
+                                        </div>
+                                        <div class="flex items-center justify-between bg-white/5 rounded-lg px-4 py-2.5">
+                                            <div class="flex items-center gap-2">
+                                                <div class="w-2 h-2 rounded-full bg-brand-emerald"></div>
+                                                <span class="text-brand-text text-xs font-mono">EURUSD BUY</span>
+                                            </div>
+                                            <span class="text-brand-emerald text-xs font-mono">+$520</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating stat card -->
+                        <div class="absolute -bottom-6 -right-6 md:-right-8 glass-card p-5" data-reveal="zoom">
+                            <p class="text-brand-gold font-display text-2xl font-bold">Multi-Millionaire</p>
+                            <p class="text-brand-muted text-xs">In under 18 months</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Bio -->
+                <div data-reveal="fade-left">
+                    <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">Meet Brad</p>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-6 leading-tight">The Mastermind<br>Behind <span class="gold-glow">Your Trades</span></h2>
+
+                    <div class="space-y-4 text-brand-muted text-sm leading-relaxed">
+                        <p>Just 18 months ago, Brad was stuck — trying to juggle fifteen different businesses, staring at his MT4 all day, burning out fast.</p>
+                        <p>Then he found a system. A rhythm. A way to trade that didn't demand his entire life. He stripped away everything that didn't work and doubled down on what did.</p>
+                        <p>The result? He went from making under $10k a month to becoming a <span class="text-brand-gold font-semibold">multi-millionaire</span> — spending time with his family, travelling the world, and living the freedom that trading was always supposed to give.</p>
+                        <p>Now he shares that exact system — for free — because he believes everyone deserves a shot at this life.</p>
+                    </div>
+
+                    <div class="gold-divider mt-8 mb-8"></div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <p class="font-display text-2xl font-bold gold-glow"><span data-counter="85" data-counter-suffix="%">0</span></p>
+                            <p class="text-xs text-brand-muted mt-1">Win Rate</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-2xl font-bold gold-glow"><span data-counter="1000" data-counter-suffix="s+">0</span></p>
+                            <p class="text-xs text-brand-muted mt-1">Trades Executed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ THE METHOD ═══════════════════ -->
+    <section id="method" class="section-pad relative overflow-hidden">
+        <div class="orb w-80 h-80 bottom-0 left-0" style="background: radial-gradient(circle, rgba(52,211,153,0.06), transparent 70%);" data-parallax="30"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <!-- Section header -->
+            <div class="text-center max-w-2xl mx-auto mb-20" data-reveal="fade-up">
+                <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">The Method</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold mb-6">Why This Isn't Just Another<br><span class="gold-glow">Broken System</span></h2>
+                <p class="text-brand-muted text-lg">You don't need to work harder. You need to trade differently.</p>
+            </div>
+
+            <!-- Method grid -->
+            <div class="grid md:grid-cols-2 gap-6" data-stagger-parent>
+                <!-- Professional -->
+                <div class="glass-card p-8 flex gap-6" data-stagger-child>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold mb-2 text-brand-text">Human-Led Professional Analysis</h3>
+                        <p class="text-brand-muted text-sm">Every trade idea is manually analysed and placed by Brad — not automated, not AI-generated. Real expertise, real accountability.</p>
+                    </div>
+                </div>
+
+                <!-- Single Strategy -->
+                <div class="glass-card p-8 flex gap-6" data-stagger-child>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(52,211,153,0.15), rgba(52,211,153,0.05));">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold mb-2 text-brand-text">One Strategy, Total Consistency</h3>
+                        <p class="text-brand-muted text-sm">No switching between systems. No conflicting signals. One proven approach applied consistently across every single trade.</p>
+                    </div>
+                </div>
+
+                <!-- Refined -->
+                <div class="glass-card p-8 flex gap-6" data-stagger-child>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold mb-2 text-brand-text">Refined Over A Decade</h3>
+                        <p class="text-brand-muted text-sm">Thousands of trades and market cycles. This isn't theory from a textbook — it's a living, breathing system that adapts and endures.</p>
+                    </div>
+                </div>
+
+                <!-- Simple -->
+                <div class="glass-card p-8 flex gap-6" data-stagger-child>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style="background: linear-gradient(135deg, rgba(52,211,153,0.15), rgba(52,211,153,0.05));">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-lg font-bold mb-2 text-brand-text">Simple, Actionable Ideas</h3>
+                        <p class="text-brand-muted text-sm">Clear entries, exits, and targets sent straight to your phone. No jargon, no ambiguity — just place the trade and go live your life.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+    <section id="join" class="section-pad relative overflow-hidden">
+        <div class="orb w-96 h-96 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="background: radial-gradient(circle, rgba(201,168,76,0.12), transparent 70%);" data-parallax="-20"></div>
+
+        <div class="max-w-3xl mx-auto text-center relative">
+            <div data-reveal="fade-up">
+                <p class="text-brand-gold font-medium text-sm tracking-widest uppercase mb-4">Ready?</p>
+                <h2 class="font-display text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-split="words">Join Trade With Freedom <span class="gold-glow">On Telegram</span></h2>
+                <p class="text-brand-muted text-lg max-w-xl mx-auto mb-10">Stop watching from the sidelines. Get 2-4 professional trade ideas delivered daily — completely free. Your next chapter starts with one click.</p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a href="#" class="cta-button text-lg !py-5 !px-10" data-magnetic>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        Join The Free Group Now
+                    </a>
+                </div>
+
+                <!-- Trust signals -->
+                <div class="flex flex-wrap justify-center gap-8 text-brand-muted text-sm" data-stagger-parent>
+                    <div class="flex items-center gap-2" data-stagger-child>
+                        <svg class="w-5 h-5 text-brand-emerald" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        100% Free — No Card Required
+                    </div>
+                    <div class="flex items-center gap-2" data-stagger-child>
+                        <svg class="w-5 h-5 text-brand-emerald" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        No Upsells
+                    </div>
+                    <div class="flex items-center gap-2" data-stagger-child>
+                        <svg class="w-5 h-5 text-brand-emerald" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Leave Anytime
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    </main>
+
+    <!-- ═══════════════════ DISCLAIMER ═══════════════════ -->
+    <section class="py-16 px-6 border-t border-white/5" style="background: rgba(10,14,26,0.9);">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="text-brand-muted text-xs leading-relaxed opacity-80">
+                <strong class="text-brand-text/60">Disclaimer:</strong> Trade With Freedom is not a "get rich quick" scheme. Past performance does not guarantee future results. All trading carries inherent risk — only trade with money you can afford to lose. This is not a replacement for personal financial advice. Trade With Freedom is sponsored by a regulated partner trading platform. Always do your own due diligence.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="py-10 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #C9A84C, #A88B3A);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A0E1A" stroke-width="2.5" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                </div>
+                <span class="font-display text-sm font-bold text-brand-text">Trade<span class="gold-glow">WithFreedom</span></span>
+            </div>
+
+            <!-- Copyright -->
+            <p class="text-brand-muted text-xs">&copy; 2026 Trade With Freedom. All rights reserved.</p>
+
+            <!-- Nav links -->
+            <div class="flex gap-6">
+                <a href="#how-it-works" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">How It Works</a>
+                <a href="#results" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">Results</a>
+                <a href="#about" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">About</a>
+                <a href="#join" class="text-brand-muted hover:text-brand-gold text-xs transition-colors duration-300">Join</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="animations.js" defer></script>
+
+</body>
+</html>
